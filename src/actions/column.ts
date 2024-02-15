@@ -62,16 +62,21 @@ const cards: TCard[] = [
 type TStore = {
   cards: TCard[];
   addCard: (title: string, column: TCardColumn) => void;
+  setCards: (cards: TCard[]) => void;
 };
 
 export const useStore = create<TStore>((set) => ({
   cards,
+  setCards: (listCards: TCard[]) =>
+    set({
+      cards: listCards,
+    }),
   addCard: (title, column) =>
     set((state) => {
       const newCards = [...state.cards];
 
       newCards.push({
-        id: `${cards.length + 1}`,
+        id: `${cards.length + 2}`,
         title,
         column,
       });
